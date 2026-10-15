@@ -2,7 +2,7 @@
 
 ## Outcome and evidence boundary
 
-Completed a working offline auditor in Python with nine finding rules, directory scanning, terminal/JSON/SARIF output, severity-based exit codes, vulnerable and corrected fixtures, automated tests, and a GitHub Actions workflow. This report records local Windows verification on 15 October 2026. The project has not been published and no hosted GitHub Actions run, merge restriction, or production deployment is claimed.
+Completed a working offline auditor in Python with nine finding rules, directory scanning, terminal/JSON/SARIF output, severity-based exit codes, vulnerable and corrected fixtures, automated tests, and a GitHub Actions workflow. This report records local Windows verification on 15 October 2026. The initial capture was local. Publication and hosted verification are recorded in the addendum below; no merge restriction or production deployment is claimed.
 
 ## Objective and threat model
 
@@ -59,7 +59,7 @@ The generic pair demonstrates only secret heuristics on a GitLab-shaped YAML fil
 
 Input/CLI tests cover malformed YAML, unsafe tags, aliases, duplicate keys, merge keys, multi-document files, nesting/size limits, UTF-8 errors/BOM, malformed jobs/steps, missing inputs, empty directories, directory exclusions/deduplication, partial failures, thresholds, JSON/SARIF structure, default targets, and input/output collision protection. Parser diagnostics deliberately omit source snippets to avoid printing credential-bearing input.
 
-`python -m pip check` reports no broken requirements. The captured SARIF report parses as JSON and its key fields/results are tested; external SARIF schema validation and a GitHub SARIF upload were not performed. The CLI’s intended gate behavior was tested locally, including failures for vulnerable fixtures and success for corrected fixtures. Tests were run on Windows; the hosted Ubuntu runner remains untested.
+`python -m pip check` reports no broken requirements. The captured SARIF report parses as JSON and its key fields/results are tested; external SARIF schema validation and a GitHub SARIF upload were not performed. The CLI’s intended gate behavior was tested locally, including failures for vulnerable fixtures and success for corrected fixtures. The original captured tests ran on Windows. Hosted Ubuntu verification is recorded in the publication addendum.
 
 Raw test output is saved in reports/tests.txt. reports/execution-log.json records commands, expected and observed exit codes, stdout, and stderr. reports/manifest.json records the interpreter/dependency versions and SHA-256 hashes of source, tests, fixtures, dependency file, and active workflow for this evidence set.
 
@@ -92,7 +92,7 @@ From the project root in PowerShell:
 .\.venv314\Scripts\python.exe auditor.py examples\insecure.yml --format sarif --output reports\scan.sarif
 ```
 
-For Linux, create a Python 3.14 venv and substitute its bin/python interpreter. This is a portability instruction, not evidence of a Linux run.
+For Linux, create a Python 3.14 venv and substitute its bin/python interpreter. The supplied workflow now has a successful hosted Ubuntu run; see the publication addendum.
 
 ## What I would improve next
 
@@ -105,3 +105,9 @@ Add deeper expression/data-flow analysis, provider-specific adapters, action dep
 - [PyYAML release files](https://pypi.org/project/PyYAML/#files)
 - [Verified checkout tag](https://api.github.com/repos/actions/checkout/git/ref/tags/v4.2.2)
 - [Verified setup-python tag](https://api.github.com/repos/actions/setup-python/git/ref/tags/v5.6.0)
+
+## Publication addendum — 15 October 2026
+
+The project is public at [notsobs/ci-cd-pipeline-security-auditor](https://github.com/notsobs/ci-cd-pipeline-security-auditor). [Hosted run 38765850660](https://github.com/notsobs/ci-cd-pipeline-security-auditor/actions/runs/38765850660) passed on the initial published commit 7675d5d. Its dependency installation, regression tests, active-workflow audit, and corrected-example checks all succeeded on GitHub’s Ubuntu runner. The earlier local evidence is retained as its original snapshot. A compact record of hosted verification is in reports/hosted-ci.json.
+
+This establishes that CI runs successfully; it does not establish required-check or branch-protection enforcement. No repository security setting was changed.

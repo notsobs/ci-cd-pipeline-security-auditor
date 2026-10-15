@@ -1,8 +1,10 @@
 # CI/CD Pipeline Security Auditor
 
+[![Pipeline security audit](https://github.com/notsobs/ci-cd-pipeline-security-auditor/actions/workflows/audit.yml/badge.svg)](https://github.com/notsobs/ci-cd-pipeline-security-auditor/actions/workflows/audit.yml)
+
 A Python CLI that scans GitHub Actions workflows for suspected secrets, mutable dependencies, injection patterns, and risky permissions before deployment.
 
-## What this actually is
+## The lab
 
 A security lab built around vulnerable configurations, detection rules, and verified fixes. The scanner reads YAML without executing workflow commands. All sample credentials are fake.
 
@@ -50,7 +52,7 @@ Other YAML pipelines: `--kind generic` provides **secret heuristics only**, not 
 
 ## GitHub Actions
 
-`.github/workflows/audit.yml` runs tests and audits active workflows on pushes and pull requests. After publishing, make **Audit and regression tests** a required check in repository rules. Hosted CI and branch protection have not been exercised or configured here.
+`.github/workflows/audit.yml` runs tests and audits active workflows on pushes and pull requests. After publishing, make **Audit and regression tests** a required check in repository rules. The [first hosted CI run passed](https://github.com/notsobs/ci-cd-pipeline-security-auditor/actions/runs/38765850660). Required merge checks still need repository rules.
 
 ## Limits
 
