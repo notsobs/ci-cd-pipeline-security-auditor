@@ -1,0 +1,7 @@
+stages: [test]
+variables:
+  API_TOKEN: "$CI_API_TOKEN"
+scan:
+  stage: test
+  script:
+    - echo "test"

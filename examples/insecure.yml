@@ -1,0 +1,26 @@
+# Deliberately insecure test fixture.
+# The password below is fake and used only for testing.
+
+name: Insecure Pipeline Example
+
+on:
+  pull_request:
+
+permissions: write-all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+
+      - name: Configure deployment
+        env:
+          DEPLOY_PASSWORD: "fake-password-for-lab-only"
+        run: echo "Deployment configuration loaded"
+
+      - name: Print pull request title
+        run: |
+          echo "PR title: ${{ github.event.pull_request.title }}"

@@ -1,0 +1,11 @@
+{
+  "tool": "pipeline-auditor",
+  "version": "1.0.0",
+  "kind": "github",
+  "files_scanned": [
+    "examples/secure.yml"
+  ],
+  "findings": [],
+  "errors": [],
+  "coverage": "GitHub Actions rules and YAML secret heuristics"
+}

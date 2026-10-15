@@ -1,0 +1,44 @@
+test_default_target_and_help (test_auditor.CliTests.test_default_target_and_help) ... ok
+test_errors_fail_even_with_none (test_auditor.CliTests.test_errors_fail_even_with_none) ... ok
+test_fail_thresholds (test_auditor.CliTests.test_fail_thresholds) ... ok
+test_json_and_sarif_output (test_auditor.CliTests.test_json_and_sarif_output) ... ok
+test_output_file_and_input_collision (test_auditor.CliTests.test_output_file_and_input_collision) ... ok
+test_bracket_and_whitespace_injection (test_auditor.DetectionTests.test_bracket_and_whitespace_injection) ... ok
+test_bracket_privileged_checkout (test_auditor.DetectionTests.test_bracket_privileged_checkout) ... ok
+test_comments_are_ignored (test_auditor.DetectionTests.test_comments_are_ignored) ... ok
+test_container_digest (test_auditor.DetectionTests.test_container_digest) ... ok
+test_corrected_fixtures_are_clean (test_auditor.DetectionTests.test_corrected_fixtures_are_clean) ... ok
+test_direct_injection_and_safe_env (test_auditor.DetectionTests.test_direct_injection_and_safe_env) ... ok
+test_full_sha_and_local_action (test_auditor.DetectionTests.test_full_sha_and_local_action) ... ok
+test_generic_mode_labels_limited_coverage (test_auditor.DetectionTests.test_generic_mode_labels_limited_coverage) ... ok
+test_hardcoded_fields (test_auditor.DetectionTests.test_hardcoded_fields) ... ok
+test_input_expression (test_auditor.DetectionTests.test_input_expression) ... ok
+test_locations_and_no_config_values (test_auditor.DetectionTests.test_locations_and_no_config_values) ... ok
+test_oidc_permission_is_not_a_credential (test_auditor.DetectionTests.test_oidc_permission_is_not_a_credential) ... ok
+test_original_fixture_has_four_distinct_rules (test_auditor.DetectionTests.test_original_fixture_has_four_distinct_rules) ... ok
+test_own_ci_is_clean (test_auditor.DetectionTests.test_own_ci_is_clean) ... ok
+test_partial_scan_errors_fail_closed (test_auditor.DetectionTests.test_partial_scan_errors_fail_closed) ... ok
+test_permission_severities (test_auditor.DetectionTests.test_permission_severities) ... ok
+test_private_key_header (test_auditor.DetectionTests.test_private_key_header) ... ok
+test_privileged_pr_checkout (test_auditor.DetectionTests.test_privileged_pr_checkout) ... ok
+test_recognizable_token_in_unrelated_field (test_auditor.DetectionTests.test_recognizable_token_in_unrelated_field) ... ok
+test_reference_fields_are_not_literals (test_auditor.DetectionTests.test_reference_fields_are_not_literals) ... ok
+test_reusable_inherit_is_not_a_literal_secret (test_auditor.DetectionTests.test_reusable_inherit_is_not_a_literal_secret) ... ok
+test_reusable_workflow (test_auditor.DetectionTests.test_reusable_workflow) ... ok
+test_script_assignment (test_auditor.DetectionTests.test_script_assignment) ... ok
+test_self_hosted_pull_request (test_auditor.DetectionTests.test_self_hosted_pull_request) ... ok
+test_tags_and_branches_flagged (test_auditor.DetectionTests.test_tags_and_branches_flagged) ... ok
+test_directory_scan_deduplicates_and_skips_environments (test_auditor.InputSafetyTests.test_directory_scan_deduplicates_and_skips_environments) ... ok
+test_error_does_not_echo_source (test_auditor.InputSafetyTests.test_error_does_not_echo_source) ... ok
+test_file_size_limit (test_auditor.InputSafetyTests.test_file_size_limit) ... ok
+test_invalid_permissions_and_empty_steps (test_auditor.InputSafetyTests.test_invalid_permissions_and_empty_steps) ... ok
+test_malformed_workflow_shapes (test_auditor.InputSafetyTests.test_malformed_workflow_shapes) ... ok
+test_missing_and_empty_directory (test_auditor.InputSafetyTests.test_missing_and_empty_directory) ... ok
+test_nested_document_limit (test_auditor.InputSafetyTests.test_nested_document_limit) ... ok
+test_unsupported_documents (test_auditor.InputSafetyTests.test_unsupported_documents) ... ok
+test_utf8_bom_and_invalid_encoding (test_auditor.InputSafetyTests.test_utf8_bom_and_invalid_encoding) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 1.045s
+
+OK

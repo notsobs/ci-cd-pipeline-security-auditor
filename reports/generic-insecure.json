@@ -1,0 +1,21 @@
+{
+  "tool": "pipeline-auditor",
+  "version": "1.0.0",
+  "kind": "generic",
+  "files_scanned": [
+    "examples/generic/gitlab-insecure.yml"
+  ],
+  "findings": [
+    {
+      "rule_id": "SEC001",
+      "severity": "high",
+      "file": "examples/generic/gitlab-insecure.yml",
+      "line": 4,
+      "column": 14,
+      "title": "Suspected hardcoded credential",
+      "remediation": "Use a secret-store reference. Rotate real credentials if exposed."
+    }
+  ],
+  "errors": [],
+  "coverage": "YAML secret heuristics only; no platform-specific checks"
+}

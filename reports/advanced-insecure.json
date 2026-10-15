@@ -1,0 +1,75 @@
+{
+  "tool": "pipeline-auditor",
+  "version": "1.0.0",
+  "kind": "github",
+  "files_scanned": [
+    "examples/advanced-insecure.yml"
+  ],
+  "findings": [
+    {
+      "rule_id": "PERM002",
+      "severity": "medium",
+      "file": "examples/advanced-insecure.yml",
+      "line": 5,
+      "column": 13,
+      "title": "Sensitive token write permission",
+      "remediation": "Review this grant and restrict it to jobs that require it."
+    },
+    {
+      "rule_id": "RUN001",
+      "severity": "medium",
+      "file": "examples/advanced-insecure.yml",
+      "line": 8,
+      "column": 14,
+      "title": "Pull-request workflow uses a self-hosted runner",
+      "remediation": "Use isolated disposable runners for untrusted code; review runner access policies."
+    },
+    {
+      "rule_id": "PIN001",
+      "severity": "medium",
+      "file": "examples/advanced-insecure.yml",
+      "line": 10,
+      "column": 15,
+      "title": "Mutable external action or workflow reference",
+      "remediation": "Pin to a reviewed full 40-character commit SHA; maintain updates."
+    },
+    {
+      "rule_id": "TRUST001",
+      "severity": "critical",
+      "file": "examples/advanced-insecure.yml",
+      "line": 12,
+      "column": 16,
+      "title": "Privileged trigger checks out pull-request-controlled code",
+      "remediation": "Use unprivileged pull_request jobs for untrusted code; separate privileged operations."
+    },
+    {
+      "rule_id": "PIN002",
+      "severity": "medium",
+      "file": "examples/advanced-insecure.yml",
+      "line": 13,
+      "column": 15,
+      "title": "Mutable container reference",
+      "remediation": "Pin the container to a reviewed sha256 image digest."
+    },
+    {
+      "rule_id": "INJ001",
+      "severity": "high",
+      "file": "examples/advanced-insecure.yml",
+      "line": 14,
+      "column": 14,
+      "title": "Untrusted expression inside a shell script",
+      "remediation": "Pass input through an environment variable, quote its expansion, and avoid eval."
+    },
+    {
+      "rule_id": "PIN001",
+      "severity": "medium",
+      "file": "examples/advanced-insecure.yml",
+      "line": 16,
+      "column": 11,
+      "title": "Mutable external action or workflow reference",
+      "remediation": "Pin to a reviewed full 40-character commit SHA; maintain updates."
+    }
+  ],
+  "errors": [],
+  "coverage": "GitHub Actions rules and YAML secret heuristics"
+}

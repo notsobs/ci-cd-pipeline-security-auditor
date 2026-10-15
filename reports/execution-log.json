@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-15",
+  "platform": "Windows",
+  "interpreter": ".venv314/Scripts/python.exe",
+  "runs": [
+    {
+      "name": "tests",
+      "args": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "expected": 0,
+      "exit": 0,
+      "stdout": "",
+      "stderr": "test_default_target_and_help (test_auditor.CliTests.test_default_target_and_help) ... ok\r\ntest_errors_fail_even_with_none (test_auditor.CliTests.test_errors_fail_even_with_none) ... ok\r\ntest_fail_thresholds (test_auditor.CliTests.test_fail_thresholds) ... ok\r\ntest_json_and_sarif_output (test_auditor.CliTests.test_json_and_sarif_output) ... ok\r\ntest_output_file_and_input_collision (test_auditor.CliTests.test_output_file_and_input_collision) ... ok\r\ntest_bracket_and_whitespace_injection (test_auditor.DetectionTests.test_bracket_and_whitespace_injection) ... ok\r\ntest_bracket_privileged_checkout (test_auditor.DetectionTests.test_bracket_privileged_checkout) ... ok\r\ntest_comments_are_ignored (test_auditor.DetectionTests.test_comments_are_ignored) ... ok\r\ntest_container_digest (test_auditor.DetectionTests.test_container_digest) ... ok\r\ntest_corrected_fixtures_are_clean (test_auditor.DetectionTests.test_corrected_fixtures_are_clean) ... ok\r\ntest_direct_injection_and_safe_env (test_auditor.DetectionTests.test_direct_injection_and_safe_env) ... ok\r\ntest_full_sha_and_local_action (test_auditor.DetectionTests.test_full_sha_and_local_action) ... ok\r\ntest_generic_mode_labels_limited_coverage (test_auditor.DetectionTests.test_generic_mode_labels_limited_coverage) ... ok\r\ntest_hardcoded_fields (test_auditor.DetectionTests.test_hardcoded_fields) ... ok\r\ntest_input_expression (test_auditor.DetectionTests.test_input_expression) ... ok\r\ntest_locations_and_no_config_values (test_auditor.DetectionTests.test_locations_and_no_config_values) ... ok\r\ntest_oidc_permission_is_not_a_credential (test_auditor.DetectionTests.test_oidc_permission_is_not_a_credential) ... ok\r\ntest_original_fixture_has_four_distinct_rules (test_auditor.DetectionTests.test_original_fixture_has_four_distinct_rules) ... ok\r\ntest_own_ci_is_clean (test_auditor.DetectionTests.test_own_ci_is_clean) ... ok\r\ntest_partial_scan_errors_fail_closed (test_auditor.DetectionTests.test_partial_scan_errors_fail_closed) ... ok\r\ntest_permission_severities (test_auditor.DetectionTests.test_permission_severities) ... ok\r\ntest_private_key_header (test_auditor.DetectionTests.test_private_key_header) ... ok\r\ntest_privileged_pr_checkout (test_auditor.DetectionTests.test_privileged_pr_checkout) ... ok\r\ntest_recognizable_token_in_unrelated_field (test_auditor.DetectionTests.test_recognizable_token_in_unrelated_field) ... ok\r\ntest_reference_fields_are_not_literals (test_auditor.DetectionTests.test_reference_fields_are_not_literals) ... ok\r\ntest_reusable_inherit_is_not_a_literal_secret (test_auditor.DetectionTests.test_reusable_inherit_is_not_a_literal_secret) ... ok\r\ntest_reusable_workflow (test_auditor.DetectionTests.test_reusable_workflow) ... ok\r\ntest_script_assignment (test_auditor.DetectionTests.test_script_assignment) ... ok\r\ntest_self_hosted_pull_request (test_auditor.DetectionTests.test_self_hosted_pull_request) ... ok\r\ntest_tags_and_branches_flagged (test_auditor.DetectionTests.test_tags_and_branches_flagged) ... ok\r\ntest_directory_scan_deduplicates_and_skips_environments (test_auditor.InputSafetyTests.test_directory_scan_deduplicates_and_skips_environments) ... ok\r\ntest_error_does_not_echo_source (test_auditor.InputSafetyTests.test_error_does_not_echo_source) ... ok\r\ntest_file_size_limit (test_auditor.InputSafetyTests.test_file_size_limit) ... ok\r\ntest_invalid_permissions_and_empty_steps (test_auditor.InputSafetyTests.test_invalid_permissions_and_empty_steps) ... ok\r\ntest_malformed_workflow_shapes (test_auditor.InputSafetyTests.test_malformed_workflow_shapes) ... ok\r\ntest_missing_and_empty_directory (test_auditor.InputSafetyTests.test_missing_and_empty_directory) ... ok\r\ntest_nested_document_limit (test_auditor.InputSafetyTests.test_nested_document_limit) ... ok\r\ntest_unsupported_documents (test_auditor.InputSafetyTests.test_unsupported_documents) ... ok\r\ntest_utf8_bom_and_invalid_encoding (test_auditor.InputSafetyTests.test_utf8_bom_and_invalid_encoding) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 39 tests in 1.045s\r\n\r\nOK\r\n"
+    },
+    {
+      "name": "insecure",
+      "args": [
+        "auditor.py",
+        "examples/insecure.yml",
+        "--format",
+        "json"
+      ],
+      "expected": 1,
+      "exit": 1,
+      "stdout": "{\r\n  \"tool\": \"pipeline-auditor\",\r\n  \"version\": \"1.0.0\",\r\n  \"kind\": \"github\",\r\n  \"files_scanned\": [\r\n    \"examples/insecure.yml\"\r\n  ],\r\n  \"findings\": [\r\n    {\r\n      \"rule_id\": \"PERM001\",\r\n      \"severity\": \"high\",\r\n      \"file\": \"examples/insecure.yml\",\r\n      \"line\": 9,\r\n      \"column\": 14,\r\n      \"title\": \"Token requests write-all permissions\",\r\n      \"remediation\": \"Default to contents: read and grant only required permissions per job.\"\r\n    },\r\n    {\r\n      \"rule_id\": \"PIN001\",\r\n      \"severity\": \"medium\",\r\n      \"file\": \"examples/insecure.yml\",\r\n      \"line\": 17,\r\n      \"column\": 15,\r\n      \"title\": \"Mutable external action or workflow reference\",\r\n      \"remediation\": \"Pin to a reviewed full 40-character commit SHA; maintain updates.\"\r\n    },\r\n    {\r\n      \"rule_id\": \"SEC001\",\r\n      \"severity\": \"high\",\r\n      \"file\": \"examples/insecure.yml\",\r\n      \"line\": 21,\r\n      \"column\": 28,\r\n      \"title\": \"Suspected hardcoded credential\",\r\n      \"remediation\": \"Use a secret-store reference. Rotate real credentials if exposed.\"\r\n    },\r\n    {\r\n      \"rule_id\": \"INJ001\",\r\n      \"severity\": \"high\",\r\n      \"file\": \"examples/insecure.yml\",\r\n      \"line\": 25,\r\n      \"column\": 14,\r\n      \"title\": \"Untrusted expression inside a shell script\",\r\n      \"remediation\": \"Pass input through an environment variable, quote its expansion, and avoid eval.\"\r\n    }\r\n  ],\r\n  \"errors\": [],\r\n  \"coverage\": \"GitHub Actions rules and YAML secret heuristics\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "secure",
+      "args": [
+        "auditor.py",
+        "examples/secure.yml",
+        "--format",
+        "json",
+        "--fail-on",
+        "low"
+      ],
+      "expected": 0,
+      "exit": 0,
+      "stdout": "{\r\n  \"tool\": \"pipeline-auditor\",\r\n  \"version\": \"1.0.0\",\r\n  \"kind\": \"github\",\r\n  \"files_scanned\": [\r\n    \"examples/secure.yml\"\r\n  ],\r\n  \"findings\": [],\r\n  \"errors\": [],\r\n  \"coverage\": \"GitHub Actions rules and YAML secret heuristics\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "advanced-insecure",
+      "args": [
+        "auditor.py",
+        "examples/advanced-insecure.yml",
+        "--format",
+        "json"
+      ],
+      "expected": 1,
+      "exit": 1,
+      "stdout": "{\r\n  \"tool\": \"pipeline-auditor\",\r\n  \"version\": \"1.0.0\",\r\n  \"kind\": \"github\",\r\n  \"files_scanned\": [\r\n    \"examples/advanced-insecure.yml\"\r\n  ],\r\n  \"findings\": [\r\n    {\r\n      \"rule_id\": \"PERM002\",\r\n      \"severity\": \"medium\",\r\n      \"file\": \"examples/advanced-insecure.yml\",\r\n      \"line\": 5,\r\n      \"column\": 13,\r\n      \"title\": \"Sensitive token write permission\",\r\n      \"remediation\": \"Review this grant and restrict it to jobs that require it.\"\r\n    },\r\n    {\r\n      \"rule_id\": \"RUN001\",\r\n      \"severity\": \"medium\",\r\n      \"file\": \"examples/advanced-insecure.yml\",\r\n      \"line\": 8,\r\n      \"column\": 14,\r\n      \"title\": \"Pull-request workflow uses a self-hosted runner\",\r\n      \"remediation\": \"Use isolated disposable runners for untrusted code; review runner access policies.\"\r\n    },\r\n    {\r\n      \"rule_id\": \"PIN001\",\r\n      \"severity\": \"medium\",\r\n      \"file\": \"examples/advanced-insecure.yml\",\r\n      \"line\": 10,\r\n      \"column\": 15,\r\n      \"title\": \"Mutable external action or workflow reference\",\r\n      \"remediation\": \"Pin to a reviewed full 40-character commit SHA; maintain updates.\"\r\n    },\r\n    {\r\n      \"rule_id\": \"TRUST001\",\r\n      \"severity\": \"critical\",\r\n      \"file\": \"examples/advanced-insecure.yml\",\r\n      \"line\": 12,\r\n      \"column\": 16,\r\n      \"title\": \"Privileged trigger checks out pull-request-controlled code\",\r\n      \"remediation\": \"Use unprivileged pull_request jobs for untrusted code; separate privileged operations.\"\r\n    },\r\n    {\r\n      \"rule_id\": \"PIN002\",\r\n      \"severity\": \"medium\",\r\n      \"file\": \"examples/advanced-insecure.yml\",\r\n      \"line\": 13,\r\n      \"column\": 15,\r\n      \"title\": \"Mutable container reference\",\r\n      \"remediation\": \"Pin the container to a reviewed sha256 image digest.\"\r\n    },\r\n    {\r\n      \"rule_id\": \"INJ001\",\r\n      \"severity\": \"high\",\r\n      \"file\": \"examples/advanced-insecure.yml\",\r\n      \"line\": 14,\r\n      \"column\": 14,\r\n      \"title\": \"Untrusted expression inside a shell script\",\r\n      \"remediation\": \"Pass input through an environment variable, quote its expansion, and avoid eval.\"\r\n    },\r\n    {\r\n      \"rule_id\": \"PIN001\",\r\n      \"severity\": \"medium\",\r\n      \"file\": \"examples/advanced-insecure.yml\",\r\n      \"line\": 16,\r\n      \"column\": 11,\r\n      \"title\": \"Mutable external action or workflow reference\",\r\n      \"remediation\": \"Pin to a reviewed full 40-character commit SHA; maintain updates.\"\r\n    }\r\n  ],\r\n  \"errors\": [],\r\n  \"coverage\": \"GitHub Actions rules and YAML secret heuristics\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "advanced-secure",
+      "args": [
+        "auditor.py",
+        "examples/advanced-secure.yml",
+        "--format",
+        "json",
+        "--fail-on",
+        "low"
+      ],
+      "expected": 0,
+      "exit": 0,
+      "stdout": "{\r\n  \"tool\": \"pipeline-auditor\",\r\n  \"version\": \"1.0.0\",\r\n  \"kind\": \"github\",\r\n  \"files_scanned\": [\r\n    \"examples/advanced-secure.yml\"\r\n  ],\r\n  \"findings\": [],\r\n  \"errors\": [],\r\n  \"coverage\": \"GitHub Actions rules and YAML secret heuristics\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "generic-insecure",
+      "args": [
+        "auditor.py",
+        "examples/generic/gitlab-insecure.yml",
+        "--kind",
+        "generic",
+        "--format",
+        "json"
+      ],
+      "expected": 1,
+      "exit": 1,
+      "stdout": "{\r\n  \"tool\": \"pipeline-auditor\",\r\n  \"version\": \"1.0.0\",\r\n  \"kind\": \"generic\",\r\n  \"files_scanned\": [\r\n    \"examples/generic/gitlab-insecure.yml\"\r\n  ],\r\n  \"findings\": [\r\n    {\r\n      \"rule_id\": \"SEC001\",\r\n      \"severity\": \"high\",\r\n      \"file\": \"examples/generic/gitlab-insecure.yml\",\r\n      \"line\": 4,\r\n      \"column\": 14,\r\n      \"title\": \"Suspected hardcoded credential\",\r\n      \"remediation\": \"Use a secret-store reference. Rotate real credentials if exposed.\"\r\n    }\r\n  ],\r\n  \"errors\": [],\r\n  \"coverage\": \"YAML secret heuristics only; no platform-specific checks\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "generic-secure",
+      "args": [
+        "auditor.py",
+        "examples/generic/gitlab-secure.yml",
+        "--kind",
+        "generic",
+        "--format",
+        "json"
+      ],
+      "expected": 0,
+      "exit": 0,
+      "stdout": "{\r\n  \"tool\": \"pipeline-auditor\",\r\n  \"version\": \"1.0.0\",\r\n  \"kind\": \"generic\",\r\n  \"files_scanned\": [\r\n    \"examples/generic/gitlab-secure.yml\"\r\n  ],\r\n  \"findings\": [],\r\n  \"errors\": [],\r\n  \"coverage\": \"YAML secret heuristics only; no platform-specific checks\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "ci",
+      "args": [
+        "auditor.py",
+        ".github/workflows",
+        "--format",
+        "json",
+        "--fail-on",
+        "low"
+      ],
+      "expected": 0,
+      "exit": 0,
+      "stdout": "{\r\n  \"tool\": \"pipeline-auditor\",\r\n  \"version\": \"1.0.0\",\r\n  \"kind\": \"github\",\r\n  \"files_scanned\": [\r\n    \".github/workflows/audit.yml\"\r\n  ],\r\n  \"findings\": [],\r\n  \"errors\": [],\r\n  \"coverage\": \"GitHub Actions rules and YAML secret heuristics\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "sarif",
+      "args": [
+        "auditor.py",
+        "examples/insecure.yml",
+        "--format",
+        "sarif"
+      ],
+      "expected": 1,
+      "exit": 1,
+      "stdout": "{\r\n  \"$schema\": \"https://json.schemastore.org/sarif-2.1.0.json\",\r\n  \"version\": \"2.1.0\",\r\n  \"runs\": [\r\n    {\r\n      \"tool\": {\r\n        \"driver\": {\r\n          \"name\": \"pipeline-auditor\",\r\n          \"version\": \"1.0.0\",\r\n          \"rules\": [\r\n            {\r\n              \"id\": \"SEC001\",\r\n              \"shortDescription\": {\r\n                \"text\": \"Suspected hardcoded credential\"\r\n              },\r\n              \"help\": {\r\n                \"text\": \"Use a secret-store reference. Rotate real credentials if exposed.\"\r\n              }\r\n            },\r\n            {\r\n              \"id\": \"PIN001\",\r\n              \"shortDescription\": {\r\n                \"text\": \"Mutable external action or workflow reference\"\r\n              },\r\n              \"help\": {\r\n                \"text\": \"Pin to a reviewed full 40-character commit SHA; maintain updates.\"\r\n              }\r\n            },\r\n            {\r\n              \"id\": \"PIN002\",\r\n              \"shortDescription\": {\r\n                \"text\": \"Mutable container reference\"\r\n              },\r\n              \"help\": {\r\n                \"text\": \"Pin the container to a reviewed sha256 image digest.\"\r\n              }\r\n            },\r\n            {\r\n              \"id\": \"INJ001\",\r\n              \"shortDescription\": {\r\n                \"text\": \"Untrusted expression inside a shell script\"\r\n              },\r\n              \"help\": {\r\n                \"text\": \"Pass input through an environment variable, quote its expansion, and avoid eval.\"\r\n              }\r\n            },\r\n            {\r\n              \"id\": \"PERM001\",\r\n              \"shortDescription\": {\r\n                \"text\": \"Token requests write-all permissions\"\r\n              },\r\n              \"help\": {\r\n                \"text\": \"Default to contents: read and grant only required permissions per job.\"\r\n              }\r\n            },\r\n            {\r\n              \"id\": \"PERM002\",\r\n              \"shortDescription\": {\r\n                \"text\": \"Sensitive token write permission\"\r\n              },\r\n              \"help\": {\r\n                \"text\": \"Review this grant and restrict it to jobs that require it.\"\r\n              }\r\n            },\r\n            {\r\n              \"id\": \"PERM003\",\r\n              \"shortDescription\": {\r\n                \"text\": \"Workflow token permissions are implicit\"\r\n              },\r\n              \"help\": {\r\n                \"text\": \"Declare workflow-level permissions; repository defaults are unknown offline.\"\r\n              }\r\n            },\r\n            {\r\n              \"id\": \"TRUST001\",\r\n              \"shortDescription\": {\r\n                \"text\": \"Privileged trigger checks out pull-request-controlled code\"\r\n              },\r\n              \"help\": {\r\n                \"text\": \"Use unprivileged pull_request jobs for untrusted code; separate privileged operations.\"\r\n              }\r\n            },\r\n            {\r\n              \"id\": \"RUN001\",\r\n              \"shortDescription\": {\r\n                \"text\": \"Pull-request workflow uses a self-hosted runner\"\r\n              },\r\n              \"help\": {\r\n                \"text\": \"Use isolated disposable runners for untrusted code; review runner access policies.\"\r\n              }\r\n            }\r\n          ]\r\n        }\r\n      },\r\n      \"invocations\": [\r\n        {\r\n          \"executionSuccessful\": true,\r\n          \"toolExecutionNotifications\": []\r\n        }\r\n      ],\r\n      \"results\": [\r\n        {\r\n          \"ruleId\": \"PERM001\",\r\n          \"level\": \"error\",\r\n          \"message\": {\r\n            \"text\": \"Token requests write-all permissions. Default to contents: read and grant only required permissions per job.\"\r\n          },\r\n          \"properties\": {\r\n            \"severity\": \"high\"\r\n          },\r\n          \"locations\": [\r\n            {\r\n              \"physicalLocation\": {\r\n                \"artifactLocation\": {\r\n                  \"uri\": \"examples/insecure.yml\"\r\n                },\r\n                \"region\": {\r\n                  \"startLine\": 9,\r\n                  \"startColumn\": 14\r\n                }\r\n              }\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"ruleId\": \"PIN001\",\r\n          \"level\": \"warning\",\r\n          \"message\": {\r\n            \"text\": \"Mutable external action or workflow reference. Pin to a reviewed full 40-character commit SHA; maintain updates.\"\r\n          },\r\n          \"properties\": {\r\n            \"severity\": \"medium\"\r\n          },\r\n          \"locations\": [\r\n            {\r\n              \"physicalLocation\": {\r\n                \"artifactLocation\": {\r\n                  \"uri\": \"examples/insecure.yml\"\r\n                },\r\n                \"region\": {\r\n                  \"startLine\": 17,\r\n                  \"startColumn\": 15\r\n                }\r\n              }\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"ruleId\": \"SEC001\",\r\n          \"level\": \"error\",\r\n          \"message\": {\r\n            \"text\": \"Suspected hardcoded credential. Use a secret-store reference. Rotate real credentials if exposed.\"\r\n          },\r\n          \"properties\": {\r\n            \"severity\": \"high\"\r\n          },\r\n          \"locations\": [\r\n            {\r\n              \"physicalLocation\": {\r\n                \"artifactLocation\": {\r\n                  \"uri\": \"examples/insecure.yml\"\r\n                },\r\n                \"region\": {\r\n                  \"startLine\": 21,\r\n                  \"startColumn\": 28\r\n                }\r\n              }\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"ruleId\": \"INJ001\",\r\n          \"level\": \"error\",\r\n          \"message\": {\r\n            \"text\": \"Untrusted expression inside a shell script. Pass input through an environment variable, quote its expansion, and avoid eval.\"\r\n          },\r\n          \"properties\": {\r\n            \"severity\": \"high\"\r\n          },\r\n          \"locations\": [\r\n            {\r\n              \"physicalLocation\": {\r\n                \"artifactLocation\": {\r\n                  \"uri\": \"examples/insecure.yml\"\r\n                },\r\n                \"region\": {\r\n                  \"startLine\": 25,\r\n                  \"startColumn\": 14\r\n                }\r\n              }\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "dependencies",
+      "args": [
+        "-m",
+        "pip",
+        "check"
+      ],
+      "expected": 0,
+      "exit": 0,
+      "stdout": "No broken requirements found.\r\n",
+      "stderr": ""
+    }
+  ]
+}

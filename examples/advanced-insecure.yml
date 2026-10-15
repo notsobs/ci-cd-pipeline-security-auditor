@@ -1,0 +1,16 @@
+# Static fixture only. Never install this under .github/workflows.
+name: Privileged Pipeline Example
+on: pull_request_target
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: [self-hosted, linux]
+    steps:
+      - uses: actions/checkout@main
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: docker://alpine:latest
+      - run: echo "${{ inputs.command }}"
+  reusable:
+    uses: example-org/example-repo/.github/workflows/build.yml@main

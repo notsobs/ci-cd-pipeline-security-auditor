@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-15",
+  "platform": "Windows",
+  "versions": [
+    "3.14.8",
+    "6.0.3"
+  ],
+  "sha256": {
+    ".github/workflows/audit.yml": "fae909b008f074ef3db4038b3848ec3876051968cda874ac098dbead699e37c5",
+    "auditor.py": "5c251d1cbb6dd95b61322331bee6b6ca9debb973bcdef85a807d6e9557c2252b",
+    "examples/advanced-insecure.yml": "ec64342dc674481ba84a9d9ef4ab52b7cee306c556f96c7cac5ff94989c3bd6f",
+    "examples/advanced-secure.yml": "36e566551c7e378b2ab389d277bacc1ffe11d90f65ccf9e9bfc255a11bfd50af",
+    "examples/generic/gitlab-insecure.yml": "b2f4df9b7e1720da1a60d3fd32f56a740ddbfe4d1f7d2759aa46c97bf0f15fd3",
+    "examples/generic/gitlab-secure.yml": "3dc331cc8cceafaa3a5c4341b1fc6b2ef2750941658f3d2968e4c05b68b60d7a",
+    "examples/insecure.yml": "80bf015ce83893922961db4d6a10d9ceaaea535c50f0ca6a526884bed07cd3f6",
+    "examples/secure.yml": "59a2bd6684b95062a1f7f1696a1d2d41af9e04a292a1adc9999934a98b4e83b1",
+    "requirements.txt": "0969da99a0bc2a1b71ed50584560f4588a37567ac63af3ddbaf3c4617ca5621a",
+    "tests/test_auditor.py": "3ad4dbef65149d0dceedbc54b653d87822f6d62c7d3982d5c4f097100aad6795"
+  },
+  "action_refs": {
+    "checkout": "11bd71901bbe5b1630ceea73d27597364c9af683",
+    "setup-python": "a26af69be951a213d495a4c3e4e4022e16d87065"
+  }
+}

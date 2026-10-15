@@ -1,0 +1,48 @@
+{
+  "tool": "pipeline-auditor",
+  "version": "1.0.0",
+  "kind": "github",
+  "files_scanned": [
+    "examples/insecure.yml"
+  ],
+  "findings": [
+    {
+      "rule_id": "PERM001",
+      "severity": "high",
+      "file": "examples/insecure.yml",
+      "line": 9,
+      "column": 14,
+      "title": "Token requests write-all permissions",
+      "remediation": "Default to contents: read and grant only required permissions per job."
+    },
+    {
+      "rule_id": "PIN001",
+      "severity": "medium",
+      "file": "examples/insecure.yml",
+      "line": 17,
+      "column": 15,
+      "title": "Mutable external action or workflow reference",
+      "remediation": "Pin to a reviewed full 40-character commit SHA; maintain updates."
+    },
+    {
+      "rule_id": "SEC001",
+      "severity": "high",
+      "file": "examples/insecure.yml",
+      "line": 21,
+      "column": 28,
+      "title": "Suspected hardcoded credential",
+      "remediation": "Use a secret-store reference. Rotate real credentials if exposed."
+    },
+    {
+      "rule_id": "INJ001",
+      "severity": "high",
+      "file": "examples/insecure.yml",
+      "line": 25,
+      "column": 14,
+      "title": "Untrusted expression inside a shell script",
+      "remediation": "Pass input through an environment variable, quote its expansion, and avoid eval."
+    }
+  ],
+  "errors": [],
+  "coverage": "GitHub Actions rules and YAML secret heuristics"
+}

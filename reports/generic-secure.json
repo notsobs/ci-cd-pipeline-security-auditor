@@ -1,0 +1,11 @@
+{
+  "tool": "pipeline-auditor",
+  "version": "1.0.0",
+  "kind": "generic",
+  "files_scanned": [
+    "examples/generic/gitlab-secure.yml"
+  ],
+  "findings": [],
+  "errors": [],
+  "coverage": "YAML secret heuristics only; no platform-specific checks"
+}

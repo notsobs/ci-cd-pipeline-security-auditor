@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "pipeline-auditor",
+          "version": "1.0.0",
+          "rules": [
+            {
+              "id": "SEC001",
+              "shortDescription": {
+                "text": "Suspected hardcoded credential"
+              },
+              "help": {
+                "text": "Use a secret-store reference. Rotate real credentials if exposed."
+              }
+            },
+            {
+              "id": "PIN001",
+              "shortDescription": {
+                "text": "Mutable external action or workflow reference"
+              },
+              "help": {
+                "text": "Pin to a reviewed full 40-character commit SHA; maintain updates."
+              }
+            },
+            {
+              "id": "PIN002",
+              "shortDescription": {
+                "text": "Mutable container reference"
+              },
+              "help": {
+                "text": "Pin the container to a reviewed sha256 image digest."
+              }
+            },
+            {
+              "id": "INJ001",
+              "shortDescription": {
+                "text": "Untrusted expression inside a shell script"
+              },
+              "help": {
+                "text": "Pass input through an environment variable, quote its expansion, and avoid eval."
+              }
+            },
+            {
+              "id": "PERM001",
+              "shortDescription": {
+                "text": "Token requests write-all permissions"
+              },
+              "help": {
+                "text": "Default to contents: read and grant only required permissions per job."
+              }
+            },
+            {
+              "id": "PERM002",
+              "shortDescription": {
+                "text": "Sensitive token write permission"
+              },
+              "help": {
+                "text": "Review this grant and restrict it to jobs that require it."
+              }
+            },
+            {
+              "id": "PERM003",
+              "shortDescription": {
+                "text": "Workflow token permissions are implicit"
+              },
+              "help": {
+                "text": "Declare workflow-level permissions; repository defaults are unknown offline."
+              }
+            },
+            {
+              "id": "TRUST001",
+              "shortDescription": {
+                "text": "Privileged trigger checks out pull-request-controlled code"
+              },
+              "help": {
+                "text": "Use unprivileged pull_request jobs for untrusted code; separate privileged operations."
+              }
+            },
+            {
+              "id": "RUN001",
+              "shortDescription": {
+                "text": "Pull-request workflow uses a self-hosted runner"
+              },
+              "help": {
+                "text": "Use isolated disposable runners for untrusted code; review runner access policies."
+              }
+            }
+          ]
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": []
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "PERM001",
+          "level": "error",
+          "message": {
+            "text": "Token requests write-all permissions. Default to contents: read and grant only required permissions per job."
+          },
+          "properties": {
+            "severity": "high"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "examples/insecure.yml"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 14
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "PIN001",
+          "level": "warning",
+          "message": {
+            "text": "Mutable external action or workflow reference. Pin to a reviewed full 40-character commit SHA; maintain updates."
+          },
+          "properties": {
+            "severity": "medium"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "examples/insecure.yml"
+                },
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 15
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SEC001",
+          "level": "error",
+          "message": {
+            "text": "Suspected hardcoded credential. Use a secret-store reference. Rotate real credentials if exposed."
+          },
+          "properties": {
+            "severity": "high"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "examples/insecure.yml"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 28
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "INJ001",
+          "level": "error",
+          "message": {
+            "text": "Untrusted expression inside a shell script. Pass input through an environment variable, quote its expansion, and avoid eval."
+          },
+          "properties": {
+            "severity": "high"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "examples/insecure.yml"
+                },
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 14
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

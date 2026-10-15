@@ -1,0 +1,8 @@
+# Synthetic generic YAML fixture; secret-only coverage.
+stages: [test]
+variables:
+  API_TOKEN: "fake-token-for-lab-only"
+scan:
+  stage: test
+  script:
+    - echo "test"
