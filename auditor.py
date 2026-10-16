@@ -102,7 +102,6 @@ def parse_document(text):
     return node
 
 def normalize_expression(value):
-    # Normalize literal bracket property access and whitespace, but do not evaluate.
     value = re.sub(r"\[\s*['\"]([A-Za-z_][A-Za-z0-9_]*)['\"]\s*\]", r".\1", value)
     return re.sub(r"\s+", "", value)
 
@@ -134,7 +133,7 @@ def audit_document(node, filename, kind="github"):
             for match in ASSIGNMENT.finditer(current.value):
                 value = next((v for v in match.groups()[1:] if v is not None), "")
                 if SENSITIVE.search(match.group(1)) and not is_reference(value):
-                    if not value.startswith("$" + "{{"):
+                    if not value.startswith("${{"):
                         emit("SEC001", current)
     secrets(node)
     if kind == "generic":
@@ -156,12 +155,13 @@ def audit_document(node, filename, kind="github"):
     def permissions(current):
         if not isinstance(current, MappingNode) and scalar(current) not in {"read-all", "write-all"}:
             raise InputError("Permissions must be a mapping, read-all, or write-all.", current.start_mark.line + 1)
-        for value in fields(current).values():
+        grants = fields(current)
+        for value in grants.values():
             if scalar(value) not in {"read", "write", "none"}:
                 raise InputError("Permission values must be read, write, or none.", value.start_mark.line + 1)
         if scalar(current) == "write-all":
             emit("PERM001", current)
-        for name, value in fields(current).items():
+        for name, value in grants.items():
             if scalar(value) == "write" and name in {"contents", "packages", "actions", "id-token", "security-events", "pull-requests"}:
                 emit("PERM002", value)
     if "permissions" in top:
@@ -333,7 +333,10 @@ def main(argv=None):
         print(result, end="")
     if report["errors"]:
         return 2
-    return int(args.fail_on != "none" and any(LEVELS[f["severity"]] >= LEVELS[args.fail_on] for f in report["findings"]))
+    if args.fail_on == "none":
+        return 0
+    threshold = LEVELS[args.fail_on]
+    return int(any(LEVELS[f["severity"]] >= threshold for f in report["findings"]))
 
 if __name__ == "__main__":
     raise SystemExit(main())

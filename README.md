@@ -2,11 +2,13 @@
 
 [![Pipeline security audit](https://github.com/notsobs/ci-cd-pipeline-security-auditor/actions/workflows/audit.yml/badge.svg)](https://github.com/notsobs/ci-cd-pipeline-security-auditor/actions/workflows/audit.yml)
 
-A Python CLI that scans GitHub Actions workflows for suspected secrets, mutable dependencies, injection patterns, and risky permissions before deployment.
+A Python tool for catching security mistakes in GitHub Actions workflows: passwords left in YAML, unpinned actions, unsafe shell inputs, and permissions a job probably doesn’t need.
 
-## The lab
+## Why I built this
 
-A security lab built around vulnerable configurations, detection rules, and verified fixes. The scanner reads YAML without executing workflow commands. All sample credentials are fake.
+I wanted to look at the pipeline itself as part of the attack surface. A workflow can run code and access secrets, so mistakes in its YAML deserve a closer look too.
+
+The lab pairs deliberately insecure workflows with corrected versions so you can run both and compare the findings. The scanner only reads the files; it never runs their commands. All sample credentials are fake.
 
 ## What it checks
 
